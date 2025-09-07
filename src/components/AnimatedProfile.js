@@ -16,14 +16,11 @@ import {
 } from 'lucide-react';
 
 const AnimatedProfile = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
   const controls = useAnimation();
 
   useEffect(() => {
-    setIsVisible(true);
     controls.start({
       opacity: 1,
       y: 0,
@@ -37,14 +34,12 @@ const AnimatedProfile = () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         setImagePreview(e.target.result);
-        setProfileImage(file);
       };
       reader.readAsDataURL(file);
     }
   };
 
   const removeImage = () => {
-    setProfileImage(null);
     setImagePreview(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
@@ -147,266 +142,6 @@ const AnimatedProfile = () => {
     window.URL.revokeObjectURL(url);
   };
 
-  const downloadResumeHTML = () => {
-    // Create HTML content for the resume
-    const resumeHTML = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>K Jagadeesh Kumar - Resume</title>
-        <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                line-height: 1.6;
-                color: #333;
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 20px;
-                background: white;
-            }
-            .header {
-                text-align: center;
-                border-bottom: 3px solid #3b82f6;
-                padding-bottom: 20px;
-                margin-bottom: 30px;
-            }
-            .name {
-                font-size: 32px;
-                font-weight: bold;
-                color: #1e40af;
-                margin-bottom: 5px;
-            }
-            .title {
-                font-size: 18px;
-                color: #64748b;
-                margin-bottom: 15px;
-            }
-            .contact-info {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 20px;
-                font-size: 14px;
-                color: #64748b;
-            }
-            .section {
-                margin-bottom: 25px;
-            }
-            .section-title {
-                font-size: 20px;
-                font-weight: bold;
-                color: #1e40af;
-                border-bottom: 2px solid #e2e8f0;
-                padding-bottom: 5px;
-                margin-bottom: 15px;
-            }
-            .job-title {
-                font-weight: bold;
-                color: #1e40af;
-                font-size: 16px;
-            }
-            .company {
-                color: #64748b;
-                font-weight: normal;
-            }
-            .duration {
-                color: #64748b;
-                font-style: italic;
-                float: right;
-            }
-            .job-description {
-                margin-top: 5px;
-                margin-left: 20px;
-            }
-            .job-description ul {
-                margin: 5px 0;
-                padding-left: 20px;
-            }
-            .skills {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-            .skill-category {
-                background: #f1f5f9;
-                padding: 8px 12px;
-                border-radius: 5px;
-                font-size: 14px;
-            }
-            .project {
-                margin-bottom: 15px;
-            }
-            .project-title {
-                font-weight: bold;
-                color: #1e40af;
-            }
-            .project-tech {
-                color: #64748b;
-                font-size: 14px;
-                margin-top: 5px;
-            }
-            .project-description {
-                margin-top: 5px;
-                margin-left: 20px;
-            }
-            .education {
-                font-weight: bold;
-                color: #1e40af;
-            }
-            .university {
-                color: #64748b;
-                font-weight: normal;
-            }
-            .year {
-                color: #64748b;
-                font-style: italic;
-                float: right;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <div class="name">K Jagadeesh Kumar</div>
-            <div class="title">Frontend Developer</div>
-            <div class="contact-info">
-                <span>📍 Hyderabad, Telangana</span>
-                <span>📧 jagadeesh@example.com</span>
-                <span>📱 +91-9876543210</span>
-                <span>🔗 linkedin.com/in/jagadeesh</span>
-                <span>💻 github.com/jagadeesh</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Professional Summary</div>
-            <p>Passionate developer with 6+ years of experience building scalable web applications. I love creating beautiful, functional, and user-friendly digital experiences. Specialized in React.js, JavaScript, and modern frontend technologies.</p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Technical Skills</div>
-            <div class="skills">
-                <div class="skill-category"><strong>Frontend:</strong> React.js, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS</div>
-                <div class="skill-category"><strong>Backend:</strong> Node.js, Express.js, Python</div>
-                <div class="skill-category"><strong>Database:</strong> MongoDB, PostgreSQL</div>
-                <div class="skill-category"><strong>Tools:</strong> Git, Webpack, Vite, Docker</div>
-                <div class="skill-category"><strong>Other:</strong> RESTful APIs, GraphQL, Responsive Design</div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Professional Experience</div>
-            
-            <div class="job-description">
-                <div class="job-title">Senior Frontend Developer</div>
-                <span class="company">TechCorp Inc.</span>
-                <span class="duration">2021 - Present</span>
-                <ul>
-                    <li>Developed and maintained React-based web applications</li>
-                    <li>Collaborated with cross-functional teams to deliver high-quality products</li>
-                    <li>Implemented responsive designs using Tailwind CSS</li>
-                    <li>Optimized application performance and user experience</li>
-                </ul>
-            </div>
-
-            <div class="job-description">
-                <div class="job-title">Frontend Developer</div>
-                <span class="company">WebSolutions Ltd.</span>
-                <span class="duration">2019 - 2021</span>
-                <ul>
-                    <li>Built interactive user interfaces using React.js</li>
-                    <li>Worked with RESTful APIs and GraphQL</li>
-                    <li>Participated in code reviews and agile development processes</li>
-                    <li>Contributed to the development of reusable component libraries</li>
-                </ul>
-            </div>
-
-            <div class="job-description">
-                <div class="job-title">Junior Developer</div>
-                <span class="company">StartupXYZ</span>
-                <span class="duration">2018 - 2019</span>
-                <ul>
-                    <li>Developed web applications using JavaScript and React</li>
-                    <li>Collaborated with senior developers on various projects</li>
-                    <li>Learned modern development practices and tools</li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="section">
-            <div class="section-title">Education</div>
-            <div class="education">Bachelor of Technology in Computer Science</div>
-            <span class="university">University of Technology</span>
-            <span class="year">2014 - 2018</span>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Key Projects</div>
-            
-            <div class="project">
-                <div class="project-title">E-Commerce Platform</div>
-                <div class="project-tech">React, Node.js, MongoDB, Stripe</div>
-                <div class="project-description">
-                    Full-stack e-commerce solution with user authentication, product catalog, shopping cart, and order management. Implemented payment integration with Stripe.
-                </div>
-            </div>
-
-            <div class="project">
-                <div class="project-title">Task Management App</div>
-                <div class="project-tech">React, Socket.io, Express, PostgreSQL</div>
-                <div class="project-description">
-                    Collaborative task management with real-time updates, drag-and-drop interface, and team management features.
-                </div>
-            </div>
-
-            <div class="project">
-                <div class="project-title">Weather Dashboard</div>
-                <div class="project-tech">React, Weather API, Chart.js, Tailwind CSS</div>
-                <div class="project-description">
-                    Beautiful weather app with location-based forecasts, current weather, 7-day forecast, and interactive charts.
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Certifications</div>
-            <ul>
-                <li>AWS Certified Developer Associate</li>
-                <li>React Developer Certification</li>
-                <li>JavaScript Algorithms and Data Structures</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Languages</div>
-            <ul>
-                <li><strong>English:</strong> Fluent</li>
-                <li><strong>Telugu:</strong> Native</li>
-                <li><strong>Hindi:</strong> Conversational</li>
-            </ul>
-        </div>
-    </body>
-    </html>
-    `;
-
-    // Create a blob with the HTML content
-    const blob = new Blob([resumeHTML], { type: 'text/html' });
-    const url = window.URL.createObjectURL(blob);
-    
-    // Create a temporary link element and trigger download
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'K_Jagadeesh_Kumar_Resume.html';
-    document.body.appendChild(link);
-    link.click();
-    
-    // Clean up
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-
-    // Show instruction for Word conversion
-    alert('Resume downloaded as HTML file. To convert to Word document:\n\n1. Open the downloaded HTML file in your browser\n2. Press Ctrl+A to select all content\n3. Press Ctrl+C to copy\n4. Open Microsoft Word\n5. Press Ctrl+V to paste\n6. Save as .docx format\n\nAlternatively, you can use online HTML to Word converters.');
-  };
 
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
