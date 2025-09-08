@@ -19,8 +19,17 @@ const BackgroundParticles = () => {
     };
 
     createParticles();
+    const handleVisibility = () => {
+      // When hidden, reduce motion by clearing particles; recreated on show
+      if (document.hidden) setParticles([]);
+      else createParticles();
+    };
     window.addEventListener('resize', createParticles);
-    return () => window.removeEventListener('resize', createParticles);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('resize', createParticles);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
   }, []);
 
   return (

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g fill="#ffffff">
+    <text x="80" y="240" font-family="Inter, system-ui, Arial" font-size="64" font-weight="800">K Jagadeesh Kumar</text>
+    <text x="80" y="320" font-family="Inter, system-ui, Arial" font-size="36" opacity="0.95">Frontend Developer • React • JavaScript • UI Animations</text>
+  </g>
+  <circle cx="1030" cy="140" r="80" fill="#ffffff22"/>
+  <circle cx="980" cy="480" r="120" fill="#ffffff22"/>
+</svg>
