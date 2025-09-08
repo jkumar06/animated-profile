@@ -234,7 +234,7 @@ const AnimatedProfile = () => {
                         className="w-full h-full object-cover rounded-full"
                       />
                     ) : (
-                      <span>JD</span>
+                      <span>JK</span>
                     )}
                     
                     {/* Upload overlay */}
